@@ -1,7 +1,8 @@
 import express from "express";
 import cors from "cors";
 
-const PORT = 3000;
+import { connectToDb } from "../database/config";
+import { PORT } from "../../../../config";
 
 const corsOptions = {
     origin: "*",
@@ -19,6 +20,9 @@ app.get("/health-check", (_, res) => {
 });
 
 const startServer = async () => {
+    // connect to DB
+    await connectToDb();
+
     // Start server
     app.listen(PORT, () => console.log(`Server is running at http://localhost:${PORT}`));
 };

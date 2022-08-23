@@ -1,0 +1,45 @@
+version: "3.8"
+
+services:
+    # Database
+    mongo-db:
+        restart: always
+        container_name: e-commerce-db
+        build:
+            context: ../..
+            dockerfile: config/docker/database/Dockerfile
+        environment:
+            - MONGO_INITDB_DATABASE=e-commerce-db
+            - MONGO_INITDB_ROOT_USERNAME=e-commerce-backend-db-admin
+            - MONGO_INITDB_ROOT_PASSWORD=qLxyKWqD8muCdbpL
+        ports:
+            - 27017:27017
+        volumes:
+            - e-commerce-db-mongo-volume:/data/db
+
+    # Server
+    e-commerce-server:
+        restart: always
+        container_name: e-commerce-server
+        build:
+            context: ../..
+            dockerfile: config/docker/server/Dockerfile
+        environment:
+            - NODE_ENV=local
+            - PORT=3000
+
+            # Database
+            - DB_HOST=mongo-db
+            - DB_PORT=27017
+            - DB=e-commerce-db
+            - DB_USER=eCommerceDBUser
+            - DB_PASSWORD=6T58NAsnuZVyNJqH
+        ports:
+            - 3000:3000
+        volumes:
+            - ../..:/app
+        depends_on:
+            - mongo-db
+
+volumes:
+    e-commerce-db-mongo-volume:
