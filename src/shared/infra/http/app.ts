@@ -3,6 +3,7 @@ import cors from "cors";
 
 import { connectToDb } from "../database/config";
 import { PORT } from "../../../../config";
+import { morganMiddleware } from "../logger";
 
 const corsOptions = {
     origin: "*",
@@ -13,6 +14,7 @@ const app = express();
 // Middleware
 app.use(express.json());
 app.use(cors(corsOptions));
+app.use(morganMiddleware);
 
 // Health check route
 app.get("/health-check", (_, res) => {
