@@ -1,0 +1,8 @@
+{
+  "name": "e-commerce-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:abhilashkakumanu1/e-commerce-backend.git",
+  "author": "Abhilash Kakumanu <abhilashkakumanu1@gmail.com>",
+  "license": "MIT"
+}
