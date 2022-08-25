@@ -17,7 +17,7 @@ export class MongooseUserRepo implements IUserRepo {
 
     async getByUsername(username): Promise<User> {
         const userModel = this.models.User;
-        const user = await userModel.find({ username });
+        const user = await userModel.findOne({ username });
         return UserMap.toDomain(user);
     }
 

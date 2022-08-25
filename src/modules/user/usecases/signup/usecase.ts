@@ -1,3 +1,4 @@
+import { Password } from "../../../../shared/domain/value-objects/password";
 import { User } from "../../domain/user";
 import { IUserRepo } from "../../repos/userRepo";
 import { SignUpDTO } from "./dto";
@@ -10,7 +11,10 @@ export class SignUpUseCase {
     }
 
     async execute(request: SignUpDTO): Promise<string> {
-        const user = User.create(request);
+        // Validation
+        const password = Password.create({ value: request.password, hashed: false });
+
+        const user = User.create({ ...request, password });
 
         await this.userRepo.save(user);
 

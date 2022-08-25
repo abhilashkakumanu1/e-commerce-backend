@@ -10,3 +10,7 @@ export const DB_CREDENTIALS = {
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
 };
+
+// JWT secrets
+export const JWT_ACCESS_TOKEN_SECRET = process.env.JWT_ACCESS_TOKEN_SECRET;
+export const JWT_EXPIRY_IN_MINS = parseInt(process.env.JWT_EXPIRY_IN_MINS) || 10080;

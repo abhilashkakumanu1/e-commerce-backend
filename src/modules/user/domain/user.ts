@@ -23,8 +23,6 @@ export class User {
     public static create(props: userDTO, id?: string): User {
         // TODO: Do, any required validation here!
 
-        const password = Password.create({ value: props.password });
-
         // create user if it doesn't exist
         let userId = id;
         if (!id) {
@@ -35,7 +33,7 @@ export class User {
         props.createdAt ?? (props.createdAt = new Date());
         props.updatedAt ?? (props.updatedAt = new Date());
 
-        const user = new User({ ...props, password, id: userId });
+        const user = new User({ ...props, id: userId });
 
         return user;
     }

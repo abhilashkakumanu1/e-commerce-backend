@@ -12,16 +12,25 @@ export class Password {
         this.props = props;
     }
 
-    // compares a plain text password & hashed password
-    public async comparePassword(hashedPassword: string): Promise<boolean> {
-        // If password is already hashed, just compare the strings
-        if (this.props.hashed) {
-            return this.props.value === hashedPassword;
-        }
-
-        return await bcrypt.compare(this.props.value, hashedPassword);
+    private bcryptCompare(plainText: string, hashed: string): Promise<boolean> {
+        return new Promise((resolve, reject) => {
+            bcrypt.compare(plainText, hashed, (err, compareResult) => {
+                if (err) return resolve(false);
+                return resolve(compareResult);
+            });
+        });
     }
 
+    //    Compares as plain-text and hashed password.
+    public async comparePassword(plainTextPassword: string): Promise<boolean> {
+        let hashed: string;
+        if (this.isAlreadyHashed()) {
+            hashed = this.props.value;
+            return this.bcryptCompare(plainTextPassword, hashed);
+        } else {
+            return this.props.value === plainTextPassword;
+        }
+    }
     private async hashPassword(plainTextPassword: string): Promise<string> {
         const saltRounds = 10;
         const salt = await bcrypt.genSalt(saltRounds);
@@ -45,7 +54,7 @@ export class Password {
 
         return new Password({
             value: props.value,
-            hashed: props.hashed ?? false,
+            hashed: !!props.hashed === true,
         });
     }
 }

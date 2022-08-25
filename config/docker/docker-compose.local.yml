@@ -34,6 +34,11 @@ services:
             - DB=e-commerce-db
             - DB_USER=eCommerceDBUser
             - DB_PASSWORD=6T58NAsnuZVyNJqH
+
+            # JWT Secrets
+            - JWT_ACCESS_TOKEN_SECRET=blackSheEp67#&
+              # Expires in 1 week
+            - JWT_EXPIRY_IN_MINS=10080
         ports:
             - 3000:3000
         volumes:
