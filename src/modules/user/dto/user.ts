@@ -18,3 +18,8 @@ export interface rawUser {
     createdAt?: string | Date;
     updatedAt?: string | Date;
 }
+
+export interface SellerInfo {
+    id: string;
+    username: string;
+}

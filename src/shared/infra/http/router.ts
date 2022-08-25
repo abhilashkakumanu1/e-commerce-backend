@@ -1,7 +1,9 @@
 import { Router } from "express";
+import { getSellersUseCase } from "../../../modules/user/usecases/getSellers";
 
 import { signInUseCase } from "../../../modules/user/usecases/signin";
 import { signUpUseCase } from "../../../modules/user/usecases/signup";
+import { isBuyer } from "./auth";
 
 export const router = Router();
 
@@ -39,6 +41,25 @@ router.post("/auth/login", async (req, res) => {
             ok: true,
             data: {
                 authToken,
+            },
+        });
+    } catch (err) {
+        console.log(err);
+        return res.json({
+            ok: false,
+            error: err.message,
+        });
+    }
+});
+
+// Get all sellers
+router.get("/buyer/list-of-sellers", isBuyer, async (req, res) => {
+    try {
+        const sellers = await getSellersUseCase.execute();
+        return res.json({
+            ok: true,
+            data: {
+                sellers,
             },
         });
     } catch (err) {
