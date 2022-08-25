@@ -36,9 +36,8 @@ services:
             - DB_PASSWORD=6T58NAsnuZVyNJqH
 
             # JWT Secrets
-            - JWT_ACCESS_TOKEN_SECRET=blackSheEp67#&
-              # Expires in 1 week
-            - JWT_EXPIRY_IN_MINS=10080
+            - JWT_ACCESS_TOKEN_SECRET=Saucer-Upon-Sock-Whistle-4-Loyalty-Attend
+            - JWT_EXPIRY_IN_SECS=604800 # 1 week
         ports:
             - 3000:3000
         volumes:

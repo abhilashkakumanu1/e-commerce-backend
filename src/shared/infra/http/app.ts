@@ -5,6 +5,7 @@ import { connectToDb } from "../database/config";
 import { PORT } from "../../../../config";
 import { morganMiddleware } from "../logger";
 import { router } from "./router";
+import { authMiddleware } from "./auth";
 
 const corsOptions = {
     origin: "*",
@@ -18,7 +19,7 @@ app.use(cors(corsOptions));
 app.use(morganMiddleware);
 
 // Router
-app.use("/api/", router);
+app.use("/api/", authMiddleware, router);
 
 const startServer = async () => {
     // connect to DB

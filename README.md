@@ -17,5 +17,7 @@ A simple e-commerce-backend in node.js
 ### Server
 
 1. For the sake of time constraints I am not implementing following features:
-    1. Input validation: There are no checks for user input (like length of password etc)
+    1. Testing: I know this is a very big thing and I know that any future changes might cause regressions. There are so many benefits of unit tests (and TDD => makes you think through the solution before implementing it, makes you write testable code - less coupling, etc). But, given time constraints I can't implement all the goodies. Trying to do the bare minimum and felt like following DDD will anyway facilitate Clean Code Architecture. So, not having unit isn't such causing such a big damage in this case. Anyway, that said, I have been doing manual testing (sing POSTMAN) on every new change.
     2. Error handling: Not doing error handling as well. So, output error messages will be very crude, which shouldn't be the case in the production app.
+    3. Input validation: There are no checks for user input (like length of password etc)
+    4. Not doing /UPDATE, /DELETE APIs - example update catalog by seller, user password update etc

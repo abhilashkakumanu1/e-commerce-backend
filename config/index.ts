@@ -13,4 +13,4 @@ export const DB_CREDENTIALS = {
 
 // JWT secrets
 export const JWT_ACCESS_TOKEN_SECRET = process.env.JWT_ACCESS_TOKEN_SECRET;
-export const JWT_EXPIRY_IN_MINS = parseInt(process.env.JWT_EXPIRY_IN_MINS) || 10080;
+export const JWT_EXPIRY_IN_SECS = parseInt(process.env.JWT_EXPIRY_IN_SECS);
