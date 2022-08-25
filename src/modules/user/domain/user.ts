@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 
-import { Password } from "../../../shared/domain/ValueObjects/password";
+import { Password } from "../../../shared/domain/value-objects/password";
 import { userDTO } from "../dto/user";
 
 interface UserProps {

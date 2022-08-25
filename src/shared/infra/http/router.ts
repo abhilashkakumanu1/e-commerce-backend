@@ -10,12 +10,19 @@ router.get("/health-check", (_, res) => {
 
 // User Signup
 router.post("/auth/register", async (req, res) => {
-    const data = req.body;
-    const userId = await signUpUseCase.execute(data);
-    return res.json({
-        ok: true,
-        data: {
-            userId,
-        },
-    });
+    try {
+        const data = req.body;
+        const userId = await signUpUseCase.execute(data);
+        return res.json({
+            ok: true,
+            data: {
+                userId,
+            },
+        });
+    } catch (err) {
+        return res.json({
+            ok: false,
+            error: err.message,
+        });
+    }
 });
