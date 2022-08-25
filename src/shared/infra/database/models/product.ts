@@ -2,6 +2,7 @@ import { Schema, model } from "mongoose";
 
 const productSchema = new Schema(
     {
+        _id: String,
         name: { type: String, required: true },
         price: { type: String, required: true },
         currency: { type: String, default: "usd" },
