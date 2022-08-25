@@ -4,6 +4,7 @@ import cors from "cors";
 import { connectToDb } from "../database/config";
 import { PORT } from "../../../../config";
 import { morganMiddleware } from "../logger";
+import { router } from "./router";
 
 const corsOptions = {
     origin: "*",
@@ -16,10 +17,8 @@ app.use(express.json());
 app.use(cors(corsOptions));
 app.use(morganMiddleware);
 
-// Health check route
-app.get("/health-check", (_, res) => {
-    res.send("Working!");
-});
+// Router
+app.use("/api/", router);
 
 const startServer = async () => {
     // connect to DB
